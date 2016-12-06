@@ -16,7 +16,7 @@
             background: whitesmoke;
             font-family: "Work Sans", sans-serif;
         }
-        
+
         #map {
             position: absolute;
             top: 0;
@@ -25,7 +25,7 @@
             width: 67%;
             border-left: 3px solid #d3d3d3;
         }
-        
+
         #side-panel {
             position: absolute;
             left: 0;
@@ -36,7 +36,7 @@
             border-right: 2px solid #1C9976;
             overflow-y: scroll;
         }
-        
+
         #ui-slider {
             position: absolute;
             bottom: 20px;
@@ -66,10 +66,6 @@
                     //    maxBounds: L.latLngBounds([-6.22, 27.72],[5.76, 47.83])
             });
 
-            //  var countyCentroids = omnivore.csv('LVA_table1.csv').addTo(map);
-
-            /*            var education
-                            , outreach;*/
 
             omnivore.csv('LVA_table1.csv')
                 .on('ready', function (e) {
@@ -79,86 +75,45 @@
                     console.log(e.error[0].message);
                 });
 
-            function drawMap(schoolData) {
+            function drawMap(data) {
 
-                /*                var myIcon = L.icon({
-                                    iconUrl: 'https://s3.amazonaws.com/com.cartodb.users-assets.production/production/jonmrich/assets/20150203194453red_pin.png'
-                                    , iconRetinaUrl: 'my-icon@2x.png'
-                                    , iconSize: [30, 30]
-                                    , iconAnchor: [10, 20]
-                                    , popupAnchor: [-3, -76], // shadowUrl: 'my-icon-shadow.png',
-                                    //   shadowRetinaUrl: 'my-icon-shadow@2x.png',
-                                    //   shadowSize: [68, 95],
-                                    //  shadowAnchor: [22, 94]
-                                });*/
-
-                /*                education = L.geoJson(schoolData, {
-                                    pointToLayer: function (feature, latlng) {
-
-                                        return L.marker(latlng, {
-                                            icon: myIcon
-                                        });
-                                    }
-
-                                }).addTo(map);
-
-
-                                outreach = L.geoJson(schoolData).addTo(map);*/
-
-
-                var education = L.geoJson(schoolData, {
-
-                    pointToLayer: function (feature, latng) {
-                        return L.circleMarker(latng, {
-                            color: '#f50b0b'
-                            , opacity: 1
-                            , fillOpacity: .5
-                                //   , radius: calcRadius(Number(feature.properties.Participant))
-                                
-                            , radius: calcRadius(feature.properties.Participant)
-                                //    , radius: 10
-                        });
-                    }
-                }).addTo(map);
-
-                var outreach = L.geoJson(schoolData, {
+                L.geoJson(data, {
 
                     pointToLayer: function (feature, latlng) {
 
-                        return L.circleMarker(latlng, {
-                            color: '#6E77B0'
-                            , fillOpacity: .5
-                                //       , radius: calcRadius(Number(feature.properties.Participant))
-                                
-                            , radius: calcRadius(feature.properties.Participant)
-                                //    , radius: 20
+                        return L.marker(latlng, {
+                             icon: L.icon({
+                                iconUrl: 'images/school-15.svg'
+                            })
+                         })
 
-                        });
+                    },
+                    filter: function(feature){
+
+
+                        if(feature.properties.Area == 'Visual Art Education'){
+                          return feature;
+                        }
+
+
                     }
 
                 }).addTo(map);
 
 
 
-                function calcRadius(val) {
 
-                    var radius = Math.sqrt(val / Math.PI);
-                    return radius * 2;
-
-                }
-                sequenceUI(education, outreach);
+                // sequenceUI(outreach);
 
             }
 
 
-            function updateSymbols(education, outreach) {
-                education.eachLayer(function (layer) {
-                    layer.setRadius(20)
-                });
+            function updateSymbols(outreach) {
 
                 outreach.eachLayer(function (layer) {
                     layer.setRadius(20)
                 });
+
             }
 
 
@@ -168,7 +123,7 @@
                 $('.slider')
                     .on('input change', function () {
                         //      console.log($(this).val());
-                        updateSymbols(education, outreach);
+                        // updateSymbols(education, outreach);
 
                     });
             }
