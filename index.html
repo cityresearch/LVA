@@ -6,9 +6,11 @@
     <title>A simple map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+   <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
     <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
-
+<!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
+    
+    
     <style>
         body {
             margin: 0;
@@ -25,6 +27,40 @@
             width: 67%;
             border-left: 3px solid #d3d3d3;
         }
+        
+        h1 {
+            padding: 8px 25px 8px 15px;
+            margin: 0;
+            background: #3d3e3e;
+            color: whitesmoke;
+            font-weight: 400;
+            font-size: 1.5em;
+            text-align: left;
+        }
+        
+        h2 {
+            margin: 0;
+            padding: 8px 25px 8px 15px;
+            color: #353636;
+            font-weight: 500;
+            font-size: 1.2em;
+            text-align: left;
+        }
+        
+            #side-panel p {
+            margin: 8px 0 4px;
+            padding: 0 25px 0 15px;
+            color: #3d3d3d;
+            text-align: left;
+            font-size: 1em;
+        }
+        
+        #side-panel p:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
         
         #side-panel {
             position: absolute;
@@ -51,12 +87,23 @@
         .slider {
             width: 100%;
         }
+        
+        
+
+        
+        
     </style>
 </head>
 
 <body>
 
-    <div id='side-panel'></div>
+    <div id='side-panel'>
+    
+    <h1>Louisville Visual Art</h1>
+        <h2>Past and Present Projects of LVA</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis laoreet elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec mi eros, rutrum sed orci eget, venenatis varius est. Pellentesque accumsan est vitae risus malesuada fringilla.  </p>
+    
+    </div>
     <div id='map'></div>
     <div id="ui-slider">
         <input type="range" min="2015" max="2017" value="2017" step="1" class="slider" </div>
@@ -177,6 +224,7 @@
 
 
                 L.control.layers(null, overlays, {
+                    position: "bottomright",
                     collapsed: false
                 }).addTo(map);
 
