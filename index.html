@@ -6,11 +6,11 @@
     <title>A simple map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-   <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
     <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
-<!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
-    
-    
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
+
+
     <style>
         body {
             margin: 0;
@@ -47,7 +47,7 @@
             text-align: left;
         }
         
-            #side-panel p {
+        #side-panel p {
             margin: 8px 0 4px;
             padding: 0 25px 0 15px;
             color: #3d3d3d;
@@ -60,7 +60,6 @@
             display: block;
             clear: both;
         }
-        
         
         #side-panel {
             position: absolute;
@@ -88,21 +87,30 @@
             width: 100%;
         }
         
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
         
-
-        
-        
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
     </style>
 </head>
 
 <body>
 
     <div id='side-panel'>
-    
-    <h1>Louisville Visual Art</h1>
+
+        <h1>Louisville Visual Art</h1>
         <h2>Past and Present Projects of LVA</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis laoreet elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec mi eros, rutrum sed orci eget, venenatis varius est. Pellentesque accumsan est vitae risus malesuada fringilla.  </p>
-    
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis laoreet elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec mi eros, rutrum sed orci eget, venenatis varius est. Pellentesque accumsan est vitae risus malesuada fringilla. </p>
+
     </div>
     <div id='map'></div>
     <div id="ui-slider">
@@ -131,6 +139,13 @@
                     console.log(e.error[0].message);
                 });
 
+
+
+
+
+
+
+
             function drawMap(data) {
 
                 var education = L.geoJson(data, {
@@ -139,9 +154,9 @@
 
                         return L.marker(latlng, {
                             icon: L.icon({
-                                iconUrl: 'images/Map_marker4.png'
-                            })
-                        })
+                                    iconUrl: 'images/Map_marker4.png'
+                                })
+                        }).bindPopup(feature.properties.Name).addTo(map);
 
                     }
                     , filter: function (feature) {
@@ -168,7 +183,7 @@
                             icon: L.icon({
                                 iconUrl: 'images/Map_marker2.png'
                             })
-                        })
+                        }).bindPopup(feature.properties.Name).addTo(map);
 
                     }
                     , filter: function (feature) {
@@ -193,7 +208,7 @@
                             icon: L.icon({
                                 iconUrl: 'images/Map_marker3.png'
                             })
-                        })
+                        }).bindPopup(feature.properties.Name).addTo(map);
 
                     }
                     , filter: function (feature) {
@@ -224,12 +239,17 @@
 
 
                 L.control.layers(null, overlays, {
-                    position: "bottomright",
-                    collapsed: false
+                    position: "bottomright"
+                    , collapsed: false
                 }).addTo(map);
 
-      
-                
+
+
+
+
+
+
+
                 function updateSymbols(education, outreach, support, currentYear) {
 
                     // some kind of variabe here??
@@ -237,8 +257,8 @@
 
                     education.eachLayer(function (layer) {
                         year = layer.feature.properties["Year"];
-                       
-                      layer.update(currentYear)
+
+                        layer.update(currentYear)
                         console.log(year);
 
                     });
@@ -250,16 +270,16 @@
                     $('.slider')
                         .on('input change', function () {
                             var currentYear = $(this).val();
-                   //         console.log($(this).val());
-                               updateSymbols(education, outreach, support, currentYear);
-                       //     $('#grade span').html(currentYear);
+                            //         console.log($(this).val());
+                            updateSymbols(education, outreach, support, currentYear);
+                            //     $('#grade span').html(currentYear);
 
                         });
                 }
 
 
 
-          
+
 
 
 
