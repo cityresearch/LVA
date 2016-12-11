@@ -87,20 +87,6 @@
             width: 100%;
         }
 
-        .info {
-            padding: 6px 8px;
-            font: 14px/16px Arial, Helvetica, sans-serif;
-            background: white;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
-
-        .info h4 {
-            margin: 0 0 5px;
-            color: #777;
-        }
-
 
         .legend2 {
             text-align: left;
@@ -124,13 +110,14 @@
 
         <h1>Louisville Visual Art</h1>
         <h2>Past and Present Projects of LVA</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis laoreet elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec mi eros, rutrum sed orci eget, venenatis varius est. Pellentesque accumsan est vitae risus malesuada fringilla. </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis laoreet elementum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec mi eros, rutrum sed orci eget, venenatis varius est. Pellentesque
+            accumsan est vitae risus malesuada fringilla. </p>
         <div id='side-info'>
             <p class='sum-info'></p>
             <p class='address'></p>
             <ul>
-              <li class='list1'></li>
-              <li></li>
+                <li class='list1'></li>
+                <li></li>
             </ul>
         </div>
     </div>
@@ -145,8 +132,8 @@
             L.mapbox.accessToken = 'pk.eyJ1Ijoicmdkb25vaHVlIiwiYSI6Im5Ua3F4UzgifQ.PClcVzU5OUj17kuxqsY_Dg';
 
             var map = L.mapbox.map('map', 'mapbox.light', {
-                center: [38.2, -85.7]
-                , zoom: 11
+                center: [38.2, -85.7],
+                zoom: 11
                     //     minZoom: 6,
                     //     maxZoom: 9
                     //    maxBounds: L.latLngBounds([-6.22, 27.72],[5.76, 47.83])
@@ -154,10 +141,10 @@
 
 
             omnivore.csv('LVA_table1.csv')
-                .on('ready', function (e) {
+                .on('ready', function(e) {
                     drawMap(e.target.toGeoJSON());
                 })
-                .on('error', function (e) {
+                .on('error', function(e) {
                     console.log(e.error[0].message);
                 });
 
@@ -166,25 +153,25 @@
 
 
 
-          //   var info = L.control({
-          //       position: 'topright'
-          //   });
-           //
-          //   info.onAdd = function (map) {
-          //       this._div = L.DomUtil.create('div', 'info');
-          //       this.update();
-          //       return this._div;
-          //   };
-           //
-          //   // I need to figure out how to use this to get the data - 'props' is left over from the Leaflet tutoral i stole this
-          //   info.update = function (props) {
-          //       this._div.innerHTML = '<h4>Project Info here - eventually in sidepanel</h4>' + (props ?
-          //           '<b>' + props.Name + '</b><br />' : 'project info');
-          //   };
-          //   info.addTo(map);
-           //
-           //
-          //  info.update();
+            //   var info = L.control({
+            //       position: 'topright'
+            //   });
+            //
+            //   info.onAdd = function (map) {
+            //       this._div = L.DomUtil.create('div', 'info');
+            //       this.update();
+            //       return this._div;
+            //   };
+            //
+            //   // I need to figure out how to use this to get the data - 'props' is left over from the Leaflet tutoral i stole this
+            //   info.update = function (props) {
+            //       this._div.innerHTML = '<h4>Project Info here - eventually in sidepanel</h4>' + (props ?
+            //           '<b>' + props.Name + '</b><br />' : 'project info');
+            //   };
+            //   info.addTo(map);
+            //
+            //
+            //  info.update();
 
 
 
@@ -196,7 +183,7 @@
 
                 var education = L.geoJson(data, {
 
-                    pointToLayer: function (feature, latlng) {
+                    pointToLayer: function(feature, latlng) {
 
                         return L.marker(latlng, {
                             icon: L.icon({
@@ -205,14 +192,14 @@
                         }).bindPopup(feature.properties.Name).addTo(map);
 
                     },
-                    filter: function (feature) {
+                    filter: function(feature) {
 
 
                         if (feature.properties.Area == 'Visual Art Education') {
                             return feature;
                         }
                     },
-                    onEachFeature : function(feature, layer) {
+                    onEachFeature: function(feature, layer) {
 
                         layer.on('click', function() {
 
@@ -232,7 +219,7 @@
 
                 var outreach = L.geoJson(data, {
 
-                    pointToLayer: function (feature, latlng) {
+                    pointToLayer: function(feature, latlng) {
 
                         return L.marker(latlng, {
                             icon: L.icon({
@@ -240,8 +227,8 @@
                             })
                         }).bindPopup(feature.properties.Name).addTo(map);
 
-                    }
-                    , filter: function (feature) {
+                    },
+                    filter: function(feature) {
 
 
                         if (feature.properties.Area == 'Community Outreach') {
@@ -257,7 +244,7 @@
 
                 var support = L.geoJson(data, {
 
-                    pointToLayer: function (feature, latlng) {
+                    pointToLayer: function(feature, latlng) {
 
                         return L.marker(latlng, {
                             icon: L.icon({
@@ -265,8 +252,8 @@
                             })
                         }).bindPopup(feature.properties.Name).addTo(map);
 
-                    }
-                    , filter: function (feature) {
+                    },
+                    filter: function(feature) {
 
 
                         if (feature.properties.Area == 'Artist Support') {
@@ -286,18 +273,19 @@
                 sequenceUI(education, outreach, support);
 
                 var overlays = {
-                    "Education": education
-                    , "Outreach": outreach
-                    , "Support": support
+                    "Education": education,
+                    "Outreach": outreach,
+                    "Support": support
 
                 };
 
 
                 L.control.layers(null, overlays, {
-                    position: "bottomright"
-                    , collapsed: false
+                    position: "bottomright",
+                    collapsed: false
                 }).addTo(map);
 
+            }
 
 
 
@@ -305,40 +293,32 @@
 
 
 
-                function updateSymbols(education, outreach, support, currentYear) {
 
-                    // some kind of variabe here??
-                    var year;
+            function updateSymbols(education, outreach, support, currentYear) {
 
-                    education.eachLayer(function (layer) {
-                        year = layer.feature.properties["Year"];
+                // some kind of variabe here??
+                var year;
 
-                        layer.update(currentYear)
-                        console.log(year);
+                education.eachLayer(function(layer) {
+                    year = layer.feature.properties["Year"];
+
+                    layer.update(currentYear)
+                    console.log(year);
+
+                });
+
+            }
+
+            //this is nonsense
+            function sequenceUI(education, outreach, support) {
+                $('.slider')
+                    .on('input change', function() {
+                        var currentYear = $(this).val();
+                        //         console.log($(this).val());
+                        updateSymbols(education, outreach, support, currentYear);
+                        //     $('#grade span').html(currentYear);
 
                     });
-
-                }
-
-                //this is nonsense
-                function sequenceUI(education, outreach, support) {
-                    $('.slider')
-                        .on('input change', function () {
-                            var currentYear = $(this).val();
-                            //         console.log($(this).val());
-                            updateSymbols(education, outreach, support, currentYear);
-                            //     $('#grade span').html(currentYear);
-
-                        });
-                }
-
-
-
-
-
-
-
-
             }
         </script>
 </body>
