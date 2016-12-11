@@ -101,6 +101,9 @@
             margin-right: 8px;
             opacity: 0.7;
         }
+        #map > div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div.leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
+          padding: 40px 0;
+        }
     </style>
 </head>
 
@@ -267,7 +270,7 @@
                 updateSymbols(education, outreach, support, '2017')
 
                 var overlays = {
-                    "Education": education,
+                    "<span style='color:orange'>Education</span>": education,
                     "Outreach": outreach,
                     "Support": support
 
