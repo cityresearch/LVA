@@ -174,9 +174,6 @@
             //  info.update();
 
 
-
-
-
             //drawing the symbols
 
             function drawMap(data) {
@@ -266,11 +263,8 @@
                 }).addTo(map);
 
 
-
-
-
-                //      updateSymbols(education, outreach, support, 1);
                 sequenceUI(education, outreach, support);
+                updateSymbols(education, outreach, support, '2017')
 
                 var overlays = {
                     "Education": education,
@@ -300,12 +294,44 @@
                 var year;
 
                 education.eachLayer(function(layer) {
-                    year = layer.feature.properties["Year"];
+                    var year = layer.feature.properties["Year"];
+                    if(year != currentYear) {
+                      layer.setOpacity(0);
+                      layer.interactive = false;
 
-                    layer.update(currentYear)
-                    console.log(year);
+                    } else {
+                      layer.setOpacity(1);
+                      layer.interactive = false;
+                    }
+                });
+
+                outreach.eachLayer(function(layer){
+
+                  var year = layer.feature.properties["Year"];
+                  if(year != currentYear) {
+                    layer.setOpacity(0);
+                    layer.interactive = false;
+
+                  } else {
+                    layer.setOpacity(1);
+                    layer.interactive = false;
+                  }
 
                 });
+                support.eachLayer(function(layer) {
+
+                  var year = layer.feature.properties["Year"];
+                  if(year != currentYear) {
+                    layer.setOpacity(0);
+                    layer.interactive = false;
+
+                  } else {
+                    layer.setOpacity(1);
+                    layer.interactive = false;
+                  }
+
+                });
+
 
             }
 
@@ -315,6 +341,7 @@
                     .on('input change', function() {
                         var currentYear = $(this).val();
                         //         console.log($(this).val());
+                        console.log(currentYear)
                         updateSymbols(education, outreach, support, currentYear);
                         //     $('#grade span').html(currentYear);
 
