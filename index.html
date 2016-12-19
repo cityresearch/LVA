@@ -40,16 +40,20 @@
             padding: 8px 25px 8px 15px;
             color: #353636;
             font-weight: 500;
-            font-size:2.2em;
+            font-size:2.0em;
             text-align: left;
         }
         #side-panel p {
+           
             margin: 8px 0 4px;
             padding: 0 25px 0 15px;
             color: #3d3d3d;
             text-align: left;
             font-size: 1em;
         }
+        
+    
+        
         #side-panel p:after {
             content: '';
             display: block;
@@ -77,8 +81,9 @@
         }
         
          #side-info p {
-            color: #0f16db;
+            color: #19191a;
         }
+        
         
         
         .slider {
@@ -118,6 +123,8 @@
             font-weight: 500;
         }
         
+       
+        
     </style>
 </head>
 
@@ -126,21 +133,23 @@
     <div id='side-panel'>
 
         <!--<h1>Louisville Visual Art</h1>-->
-        <h2>Past and Present Projects of Louisville Visual Art</h2>
+        <p><img src="images/lva_logo1.png" alt="legend"></p>
+        <h2>Past and Present Projects of LVA</h2>
         <p>Louisville Visual Art has been improving lives through visual art education, community outreach, and artist support for over 100 years. As a creative hub now established in the Portland Neighborhood, they are dedicated to engaging and encouraging artists through programming such as MAP, Artebella, Open Studio Weekend, and weekly calls for artists. LVA is shaping and inspiring the next generation of creative leaders by providing quality instruction to over 5,500 students annually through Children’s Fine Art Classes and outreach programs in schools and community centers. Louisville Visual Art aims to engage, inspire, and improve our community and city through the arts. 
             <br></br> </p>
         <div id='side-info'>
+            
             <h1 class='sum-info' value="test"></h1>
-            <p class='address'></p>
+           <!-- <p class='address'></p-->
             
             <ul>
-                <li class='list1'></li>
-                <li class='list2'></li>
-                <li class='list3'></li>
-                <li class='list4'></li>
-                <li class='list5'></li>
-                <li class='list6'></li>
-                <li class='list7'></li>
+                <p class='list1'></p>
+                <p class='list2'></p>
+                <p class='list3'></p>
+                <p class='list4'></p>
+                <p class='list5'></p>
+                <p class='list6'></p>
+                <p class='list7'></p>
              
             </ul>
         </div>
@@ -198,7 +207,7 @@
                             icon: L.icon({
                                 iconUrl: 'images/Map_marker4.png'
                             })
-                        }).bindPopup(feature.properties.Name).addTo(map);
+                        }).bindPopup(feature.properties.Name + '<br />' + feature.properties.Address).addTo(map);
                     },
                     filter: function(feature) {
                         if (feature.properties.Area == 'Visual Art Education') {
@@ -209,14 +218,14 @@
                         layer.on('click', function() {
                             console.log(feature.properties)
                             $(".sum-info").html(feature.properties.Name);
-                            $(".address").html(feature.properties.Address);
+                      //      $(".address").html(feature.properties.Address);
                             $(".list1").html('<b> Program type: </b> '  + feature.properties.Type);
                             $(".list2").html('<b> Description: </b> '  + feature.properties.desc1);
                             $(".list3").html('<b> Number of participants: </b> '  + feature.properties.Participant);
                             $(".list4").html('<b> Artists involved: </b> ' + feature.properties.Artists);
                              $(".list5").html('<b> In partnerhsip with: </b> ' + feature.properties.partner);
                              $(".list6").html('<b> Made possible by support from: </b> ' + feature.properties.funder);
-                            $(".list7").html('<b> More information: </b> ' + feature.properties.url);
+                            $(".list7").html('<a href="'+feature.properties.url+'" target="_blank">Click here for more information</a>');
                         });
                     }
                 }).addTo(map);
@@ -230,7 +239,7 @@
                             icon: L.icon({
                                 iconUrl: 'images/Map_marker2.png'
                             })
-                        }).bindPopup(feature.properties.Name).addTo(map);
+                        }).bindPopup(feature.properties.Name + '<br />' + feature.properties.Address).addTo(map);
                     },
                     filter: function(feature) {
                         if (feature.properties.Area == 'Community Outreach') {
@@ -242,14 +251,14 @@
                         layer.on('click', function() {
                             console.log(feature.properties)
                             $(".sum-info").html(feature.properties.Name);
-                            $(".address").html(feature.properties.Address);
+                         //   $(".address").html(feature.properties.Address);
                             $(".list1").html('<b> Program type: </b> '  + feature.properties.Type);
                             $(".list2").html('<b> Description: </b> '  + feature.properties.desc1);
                             $(".list3").html('<b> Number of participants: </b> '  + feature.properties.Participant);
                             $(".list4").html('<b> Artists involved: </b> ' + feature.properties.Artists);
                              $(".list5").html('<b> In partnerhsip with: </b> ' + feature.properties.partner);
                              $(".list6").html('<b> Made possible by support from: </b> ' + feature.properties.funder);
-                            $(".list7").html('<b> More information: </b> ' + feature.properties.url);
+                            $(".list7").html('<a href="'+feature.properties.url+'" target="_blank">Click here for more information</a>');
                        
                         });
                     }
@@ -265,7 +274,7 @@
                             icon: L.icon({
                                 iconUrl: 'images/Map_marker3.png'
                             })
-                        }).bindPopup(feature.properties.Name).addTo(map);
+                        }).bindPopup(feature.properties.Name + '<br />' + feature.properties.Address).addTo(map);
                     },
                     filter: function(feature) {
                         if (feature.properties.Area == 'Artist Support') {
@@ -276,14 +285,15 @@
                         layer.on('click', function() {
                             console.log(feature.properties)
                             $(".sum-info").html(feature.properties.Name);
-                            $(".address").html(feature.properties.Address);
+                         //   $(".address").html(feature.properties.Address);
                             $(".list1").html('<b> Program type: </b> '  + feature.properties.Type);
                             $(".list2").html('<b> Description: </b> '  + feature.properties.desc1);
                             $(".list3").html('<b> Number of participants: </b> '  + feature.properties.Participant);
                             $(".list4").html('<b> Artists involved: </b> ' + feature.properties.Artists);
                              $(".list5").html('<b> In partnerhsip with: </b> ' + feature.properties.partner);
                              $(".list6").html('<b> Made possible by support from: </b> ' + feature.properties.funder);
-                            $(".list7").html('<b> More information: </b> ' + feature.properties.url);
+                         //   $(".list7").html('<b> More information: </b> ' + feature.properties.url);
+                            $(".list7").html('<a href="'+feature.properties.url+'" target="_blank">Click here for more information</a>');
                       
                         });
                     }
@@ -291,9 +301,9 @@
                 sequenceUI(education, outreach, support);
                 updateSymbols(education, outreach, support, '2016')
                 var overlays = {
-                    "<span style='color:orange; font-size: 13pt'>Visual Art Education</span>": education,
-                    "<span style='color:blue; font-size: 13pt''>Community Outreach</span>": outreach,
-                    "<span style='color:red; font-size: 13pt''>Artist Support</span>": support
+                    "<span style='color:#fdb405; font-size: 13pt'>Visual Art Education</span>": education,
+                    "<span style='color:#00aeef; font-size: 13pt''>Community Outreach</span>": outreach,
+                    "<span style='color:#ef001c; font-size: 13pt''>Artist Support</span>": support
                 };
                 L.control.layers(null, overlays, {
                     position: "topright",
